@@ -47,7 +47,7 @@ class PolicyHelper:
         new_policy_list = []
         counter = 1
         for i in self.policy_list:
-            if i.policy_number != policy_number:
+            if i.policy_number != int(policy_number):
                 i.policy_number = counter
                 counter += 1
                 new_policy_list.append(i)
