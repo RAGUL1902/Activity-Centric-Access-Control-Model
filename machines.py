@@ -11,7 +11,7 @@ class Machine:
 
     def __init__(self, name='default_machine', state=0, activity='defaut_activity'):
         self.name = name
-        self.state = state
+        self.state_name = state
         self.activity = activity
 
     def change_state(self,state):

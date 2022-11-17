@@ -1,11 +1,14 @@
 import os
 import time
 from machines import Machine
+import constants
 from constants import machines_list
 from policy_helper import PolicyHelper
 
 #TODO help function
+os.system('cls')
 
+policyHelper = PolicyHelper(constants.POLICY_FILE)
 print("\n\n ---------------------- COMMANDS-------------------")
 print('\n show_policies() - show policies')
 print('\n show_activity() - show current activity status')
@@ -30,9 +33,9 @@ while 1:
         print("\n-------------------  POLICY RELATED ---------------------")
         print('\n\n')
 
-        print('\n "1" for adding new policy')
-        print('\n "2" for adding delete policy')
-        print('\n "3" for adding show policy')
+        print('\n "1" to add new policy')
+        print('\n "2" to delete policy')
+        print('\n "3" to show policy')
 
         command_2 = input("\n->")
 
@@ -57,19 +60,19 @@ while 1:
             h1 = input('\n-> Enter post condition Machine state :')
             i1 = input('\n-> Enter post condition machine activity :')
 
-            PolicyHelper.add_policy('a1', 'b1', 'c1', ['d1', 'e1', 'f1'], [], ['g1', 'h1', 'i1'])
+            PolicyHelper.add_policy(policyHelper,a1, b1, c1, [d1, e1, f1], [j1,k1,l1], [g1, h1, i1])
             print('\n---------------------------------------------------------')
             pass
         elif command_2 =='2':
             print("\n-------------------  DELETE POLICY ---------------------")
             
             policy_no = input("\n-> Enter policy number you want to delete :")
-            PolicyHelper.delete_policy(policy_no)
+            PolicyHelper.delete_policy(policyHelper,policy_no)
             print('\n---------------------------------------------------------')
             pass
         elif command_2 =='3':
             print("\n-------------------  SHOW POLICY ---------------------")
-            PolicyHelper.show_policies()
+            PolicyHelper.show_policies(policyHelper)
             print('\n---------------------------------------------------------')
             pass
         else :
@@ -99,7 +102,7 @@ while 1:
             print("\n-------------------  STATE OF MACHINES ---------------------")
             for machine_iterator in machines_list:
                 state = 'OFF'
-                if machine_iterator.state == 1:
+                if machine_iterator.state_name == 1:
                     state = 'ON'
                 print( "\n" + machine_iterator.name + "     " + state)
             print('\n---------------------------------------------------------')
@@ -113,7 +116,7 @@ while 1:
             new_state = 0
             if(val == 'ON'):
                 new_state = 1
-            if(machine_name.state == new_state):
+            if(machine_name.state_name == new_state):
                 print('\n->'+machine_name + ' is already in '+ val + ' state')
 
 
@@ -130,7 +133,7 @@ while 1:
         #time.sleep(5)
 
     print('next iteration')
-    
+    #policyHelper = PolicyHelper(constants.POLICY_FILE)
     time.sleep(5)
 
     os.system('cls')

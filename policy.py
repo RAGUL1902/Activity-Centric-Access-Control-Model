@@ -7,7 +7,7 @@ class Policy:
     * source_name 
     * activity_name
     * Conditions(pre, post and current) are a list of lists of the format
-        [[object1, acitivity, value], [object2, acitivity, value],...]
+        [ object1, acitivity, value]
     """
 
     policy_number = None

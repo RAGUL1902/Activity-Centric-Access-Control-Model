@@ -1,5 +1,6 @@
 from machines import Machine
 
+POLICY_FILE = 'policies.txt'
 #creating objects
 crusher_and_grinder_1 = Machine('Crusher_and_grinder_1',0,"breakdown_chemicals")
 agitator_1 = Machine('agitator_1',0,"agitate")

@@ -1,32 +1,11 @@
-import os
-import time
-from machines import Machine
-from constants import machines_list
+from policy_helper import PolicyHelper
+import constants
 
-print("\n-------------------  STATE OF MACHINES ---------------------")
-for machine_iterator in machines_list:
-    machine_state = 'OFF'
-    if machine_iterator.state == 1:
-        machine_state = 'ON'
-    print( "\n" + machine_iterator.name + "     " + machine_state +" "+ str(machine_iterator.state))
-print('\n---------------------------------------------------------')
+policyHelper = PolicyHelper(constants.POLICY_FILE)
 
-machine_name = input("Enter machine name:")
-print(machine_name)
 
-exist = False
-for machine_itr in machines_list :
-    if machine_itr.name == machine_name:
-        exist = True
-        break
+print(policyHelper.policy_list[0])
 
-if exist == False:
-    print('Enter correct machine name')
+#a1 = policyHelper.pre_condition
 
-val = input("Enter new state (ON/OFF) :")
-
-new_state = 0
-if(val == 'ON'):
-    new_state = 1
-if(machine_name.state == new_state):
-    print(machine_name + ' is already in '+ val + ' state')
+#print(a1)
