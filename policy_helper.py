@@ -12,10 +12,10 @@ class PolicyHelper:
     def __init__(self, policy_file):
         self.policy_file = policy_file
 
-    def add_policy(self, object_name, source_name, activity_name, pre_condition, current_condition, post_condition):
+    def add_policy(self, object_name, state_name, activity_name, pre_condition, current_condition, post_condition):
         policy_number = len(self.policy_list) + 1
         print(f"Adding new policy: {policy_number}...")
-        new_policy = policy.Policy(policy_number, object_name, source_name,
+        new_policy = policy.Policy(policy_number, object_name, state_name,
                                    activity_name, pre_condition, current_condition, post_condition)
         self.policy_list.append(new_policy)
         self.update_policies_file()
@@ -42,7 +42,17 @@ class PolicyHelper:
         open(self.policy_file, 'w').close()
         f = open(self.policy_file, 'a+')
         for i in self.policy_list:
-            policy_string = f"{i.policy_number}) < ({i.object_name}, {i.source_name}, {i.activity_name}), ({str(i.pre_condition)[1:-1]}), ({str(i.current_condition)[1:-1]}), ({str(i.post_condition)[1:-1]})) > \n"
+            policy_string = f"{i.policy_number}) < ({i.object_name}, {i.state_name}, {i.activity_name}), ({str(i.pre_condition)[1:-1]}), ({str(i.current_condition)[1:-1]}), ({str(i.post_condition)[1:-1]})) > \n"
             f.write(policy_string)
         f.close()
 
+
+    def check_policy(self, machine_name, old_state, machines_list):
+        
+        for i in self.policy_list:
+            if i.name == machine_name & i.state == old_state :
+                
+                pass
+        pass
+
+    
