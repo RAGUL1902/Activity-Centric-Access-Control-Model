@@ -9,7 +9,7 @@ class Machine:
         activity <string>- the process the machine does 
     """  
 
-    def __init__(self, name='default_machine', state=0, activity='defaut_activity'):
+    def __init__(self, name='default_machine', state="OFF", activity='defaut_activity'):
         self.name = name
         self.state_name = state
         self.activity = activity

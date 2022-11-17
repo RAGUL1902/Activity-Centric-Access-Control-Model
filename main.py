@@ -102,7 +102,7 @@ while 1:
             print("\n-------------------  STATE OF MACHINES ---------------------")
             for machine_iterator in machines_list:
                 state = 'OFF'
-                if machine_iterator.state_name == 1:
+                if machine_iterator.state_name == "ON":
                     state = 'ON'
                 print( "\n" + machine_iterator.name + "     " + state)
             print('\n---------------------------------------------------------')
@@ -117,16 +117,16 @@ while 1:
             for itr in machines_list:
                 if itr.name == machine_name:
                     machine_exist = True
-                    old_state = 1
-                    new_state = 0
+                    old_state = "OFF"
+                    new_state = "ON"
                     if(val == 'ON'):
-                        new_state = 1
-                        old_state = 0
+                        new_state = "ON"
+                        old_state = "OFF"
                     if(itr.state_name == new_state):
                         print('\n->'+machine_name + ' is already in '+ val + ' state')
                     
                     else:
-                        policyHelper.check_policy(policyHelper,old_state,new_state,machines_list)
+                        policyHelper.check_policy(machine_name,old_state,new_state,machines_list)
             if machine_exist == False:
                 print('\n Enter Correct Machine Name')
             
