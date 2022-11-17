@@ -113,12 +113,25 @@ while 1:
             machine_name = input("\n->Enter machine name:")
             val = input("\n->Enter new state (ON/OFF) :")
 
-            new_state = 0
-            if(val == 'ON'):
-                new_state = 1
-            if(machine_name.state_name == new_state):
-                print('\n->'+machine_name + ' is already in '+ val + ' state')
+            machine_exist = False
+            for itr in machines_list:
+                if itr.name == machine_name:
+                    machine_exist = True
+                    old_state = 1
+                    new_state = 0
+                    if(val == 'ON'):
+                        new_state = 1
+                        old_state = 0
+                    if(itr.state_name == new_state):
+                        print('\n->'+machine_name + ' is already in '+ val + ' state')
+                    
+                    else:
+                        policyHelper.check_policy(policyHelper,old_state,new_state,machines_list)
+            if machine_exist == False:
+                print('\n Enter Correct Machine Name')
+            
 
+            
 
 
             pass
@@ -132,7 +145,7 @@ while 1:
         print('Enter "help" to see all commands')
         #time.sleep(5)
 
-    print('next iteration')
+    print("\n --------------------------next iteration----------------------------")
     #policyHelper = PolicyHelper(constants.POLICY_FILE)
     time.sleep(5)
 

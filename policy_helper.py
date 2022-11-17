@@ -57,7 +57,7 @@ class PolicyHelper:
     def check_policy(self, machine, old_state,new_state, machines_list):
 
         for i in self.policy_list:
-            if (i.name == machine & i.state_name == old_state ):
+            if (i.object_name == machine & i.state_name == old_state ):
                 pre_condition = i.pre_condition
                 current_condition = i.current_condition
                 post_condition = i.post_condition
@@ -65,6 +65,13 @@ class PolicyHelper:
                 pre = False
                 curr = False
                 post = False
+
+                if pre_condition[0]=='-':
+                    pre = True
+                if current_condition[0]=='-':
+                    curr = True
+                if post_condition[0]=='-':
+                    post = True
 
                 for j in machines_list :
                     if (j.name == pre_condition[0] & j.state_name == pre_condition[1]):

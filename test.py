@@ -4,8 +4,10 @@ import constants
 policyHelper = PolicyHelper(constants.POLICY_FILE)
 
 
-print(policyHelper.policy_list[0])
+#print(policyHelper.policy_list[0])
 
-#a1 = policyHelper.pre_condition
+l = policyHelper.policy_list
 
-#print(a1)
+i = l[0]
+
+print(i.object_name)

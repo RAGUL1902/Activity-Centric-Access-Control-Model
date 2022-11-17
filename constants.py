@@ -3,7 +3,7 @@ from machines import Machine
 POLICY_FILE = 'policies.txt'
 #creating objects
 crusher_and_grinder_1 = Machine('Crusher_and_grinder_1',0,"breakdown_chemicals")
-agitator_1 = Machine('agitator_1',0,"agitate")
+agitator_1 = Machine('agitator_1',1,"agitate")
 suction_1 = Machine('suction_1',0,'remove_gas')
 suction_2 = Machine('suction_2',0,'remove_gas')
 pump_1 = Machine("pump_1",0,'pump_chemicals')
