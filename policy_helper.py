@@ -70,12 +70,12 @@ class PolicyHelper:
             post_condition = "()"
             object_info = f"({i.object_name}, {i.source_name}, {i.activity_name}),"
 
-            if len(i.pre_condition)>0:
-                pre_condition = f"({i.pre_condition[0]}, {i.pre_condition[1]}, {i.pre_condition[2]}),"              
-            if len(i.current_condition)>0:
+            if len(i.pre_condition) > 0:
+                pre_condition = f"({i.pre_condition[0]}, {i.pre_condition[1]}, {i.pre_condition[2]}),"
+            if len(i.current_condition) > 0:
                 current_condition = f"({i.current_condition[0]}, {i.current_condition[1]}, {i.current_condition[2]}),"
-            if len(i.post_condition)>0:
-                post_condition=f"({i.post_condition[0]}, {i.post_condition[1]}, {i.post_condition[2]})"
+            if len(i.post_condition) > 0:
+                post_condition = f"({i.post_condition[0]}, {i.post_condition[1]}, {i.post_condition[2]})"
 
             policy_string = f"{i.policy_number}) < {object_info} {pre_condition} {current_condition} {post_condition} > \n"
             f.write(policy_string)
