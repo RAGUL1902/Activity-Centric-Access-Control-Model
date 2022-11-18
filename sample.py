@@ -1,33 +1,6 @@
 # # from tkinter import *
 # # from tkinter import messagebox
 from constants import machines_list
-
-# # master = Tk()
-
-# # master.title("Activity Centric Access Control Model")
-# # def show_state():
-# #    for index, machine_iterator in enumerate(machines_list):
-               
-# #                 Label(master,text=machine_iterator.name).grid(row=index+1)
-# #                 Label(master,text="----->").grid(row=index+1,column=1)
-# #                 Label(master,text=machine_iterator.state_name).grid(row=index+1,column=2)
-# #                 # master.after(1000, update)
-
-# # def show_policy():
-# #     policy = Text(master, height=100, width=100)
-# #     policy.pack()
-# #     policy.grid(column=5)
-# #     filename='policies.txt'
-# #     with open(filename, 'r') as f:
-# #       policy.insert(END, f.read())
-# #     master.after(1000, show_policy)
-# # show_state()
-# # show_policy()
-
-
-# # mainloop()
-
-
 import tkinter as tk
 from tkinter import END, ttk
 
@@ -106,15 +79,12 @@ class StartPage(tk.Frame):
 
 # second window frame page1
 class Page1(tk.Frame):
-	
 	def __init__(self, parent, controller):
-		
 		tk.Frame.__init__(self, parent)
-
-        # for index, machine_iterator in enumerate(machines_list):   
-        #     ttk.Label(text=machine_iterator.name).grid(row=index+1)
-        #     ttk.Label(text="----->").grid(row=index+1,column=1)
-        #     ttk.Label(text=machine_iterator.state_name).grid(row=index+1,column=2)
+		for index, machine_iterator in enumerate(machines_list):
+			ttk.Label(text=machine_iterator.name).grid(row=index+1)
+			ttk.Label(text="----->").grid(row=index+1,column=1)
+			ttk.Label(text=machine_iterator.state_name).grid(row=index+1,column=2)
 
 		button1 = ttk.Button(self, text ="Home Page",
             command = lambda : controller.show_frame(StartPage))
@@ -141,12 +111,12 @@ class Page2(tk.Frame):
 		tk.Frame.__init__(self, parent)
 		label = ttk.Label(self, text ="Policies", font = LARGEFONT)
 		label.grid(row = 3, column = 4, padx = 10, pady = 10)
-    #     policy = Text(master, height=100, width=100)
-# #     policy.pack()
-# #     policy.grid(column=3)
-# #     filename='policies.txt'
-# #     with open(filename, 'r') as f:
-# #       policy.insert(END, f.read())
+		policy = Text(master, height=100, width=100)
+		policy.pack()
+		policy.grid(column=3)
+		filename='policies.txt'
+		with open(filename, 'r') as f:
+			policy.insert(END, f.read())
 
 		# button to show frame 2 with text
 		# layout2
