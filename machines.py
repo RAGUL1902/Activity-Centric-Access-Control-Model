@@ -15,16 +15,12 @@ class Machine:
         self.activity = activity
 
     def change_state(self,state):
-        self.state = state
+        self.state_name = state
         pass
     
     def show_state(self):
 
-        if self.state==0:
-            return "{self.name} is off"
-        else :
-            return "{self.name} is on"
-        
+        print('\n' +self.name +' is '+ self.state_name)
     def describe(self):
         return "{self.name} does {self.activity}"
 

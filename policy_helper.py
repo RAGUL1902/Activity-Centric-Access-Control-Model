@@ -66,6 +66,7 @@ class PolicyHelper:
                 curr = False
                 post = False
 
+
                 if pre_condition[0]=='-':
                     pre = True
                 if current_condition[0]=='-':
@@ -73,6 +74,13 @@ class PolicyHelper:
                 if post_condition[0]=='-':
                     post = True
 
+                # if(pre) :
+                #     print('pre true')
+                # if(curr):
+                #     print('curr true')
+                # if(post):
+                #     print('post true')
+                
                 for j in machines_list :
                     if (j.name == pre_condition[0] and j.state_name == pre_condition[1]):
                         pre = True
@@ -82,13 +90,16 @@ class PolicyHelper:
                         post = True
                 if( pre == True and curr == True and post == True):
                     
-                    for j in machines_list:
-                        if (j.name ==pre_condition[0] and j.state_name ==pre_condition[1]):
-                            j.state_name = new_state
-                    print('\n->MACHINE STATE CHANGED\n')
+                    for k in machines_list:
+                        if (k.name ==machine and k.state_name ==old_state):
+                            k.change_state(new_state)
+                            print('\n->MACHINE STATE CHANGED to ' + new_state + '\n')
+
+                            return machines_list
 
                 else :
                     print("\n POLICY DOESN'T ALLOW THIS CHANGE")
+                    return machines_list
         pass
 
     def show_policies(self):
