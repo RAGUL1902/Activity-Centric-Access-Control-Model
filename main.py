@@ -20,7 +20,7 @@ master.title("Activity Centric Access Control Model")
 
 
 def show_state():
-    for index, machine_iterator in enumerate(constants.machines_list):
+    for index, machine_iterator in enumerate(machines_list):
         Label(master, text=machine_iterator.name).grid(row=index+1)
         Label(master, text="----->").grid(row=index+1, column=1)
         Label(master, text=machine_iterator.state_name).grid(
@@ -31,7 +31,7 @@ def show_state():
 def show_policy():
     policy = Text(master, height=100, width=100)
     policy.grid(column=5)
-    with open(constants.POLICY_FILE, 'r') as f:
+    with open(POLICY_FILE, 'r') as f:
         policy.insert(END, f.read())
     master.after(1000, show_policy)
 
