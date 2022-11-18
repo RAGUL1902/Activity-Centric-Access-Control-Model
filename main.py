@@ -5,32 +5,32 @@ import constants
 #from constants import machines_list
 from policy_helper import PolicyHelper
 
-#TODO help function
+# TODO help function
 os.system('cls')
 
 
-from machines import Machine
-
 POLICY_FILE = 'policies.txt'
-#creating objects
-crusher_and_grinder_1 = Machine('crusher_and_grinder_1',"OFF","breakdown_chemicals")
-agitator_1 = Machine('agitator_1',"OFF","agitate")
-suction_1 = Machine('suction_1',"OFF",'remove_gas')
-suction_2 = Machine('suction_2',"OFF",'remove_gas')
-pump_1 = Machine("pump_1","OFF",'pump_chemicals')
-pump_2 = Machine("pump_2","OFF",'pump_chemicals')
-mixer_1 = Machine("mixer_1","OFF","mix")
-mixer_2 = Machine("mixer_2","OFF","mix")
-mixer_3 = Machine("mixer_3","OFF","mix")
-high_shear_mixer_1 = Machine("high_shear_mixer_1","OFF",'mix_with_high_shear')
-conveyer_1 = Machine("conveyer_1","OFF",'move_chemicals')
-compressor_1 = Machine("compressor_1","OFF","compress")
-tank_1 = Machine("tank_1","OFF",'store')
-packing_machine_1 = Machine('packing_machine_1',"OFF","pack")
-air_conditioner_1 = Machine("air_conditioner_1","OFF",'air_conditioning')
+# creating objects
+crusher_and_grinder_1 = Machine(
+    'crusher_and_grinder_1', "OFF", "breakdown_chemicals")
+agitator_1 = Machine('agitator_1', "OFF", "agitate")
+suction_1 = Machine('suction_1', "OFF", 'remove_gas')
+suction_2 = Machine('suction_2', "OFF", 'remove_gas')
+pump_1 = Machine("pump_1", "OFF", 'pump_chemicals')
+pump_2 = Machine("pump_2", "OFF", 'pump_chemicals')
+mixer_1 = Machine("mixer_1", "OFF", "mix")
+mixer_2 = Machine("mixer_2", "OFF", "mix")
+mixer_3 = Machine("mixer_3", "OFF", "mix")
+high_shear_mixer_1 = Machine(
+    "high_shear_mixer_1", "OFF", 'mix_with_high_shear')
+conveyer_1 = Machine("conveyer_1", "OFF", 'move_chemicals')
+compressor_1 = Machine("compressor_1", "OFF", "compress")
+tank_1 = Machine("tank_1", "OFF", 'store')
+packing_machine_1 = Machine('packing_machine_1', "OFF", "pack")
+air_conditioner_1 = Machine("air_conditioner_1", "OFF", 'air_conditioning')
 
-machines_list = [crusher_and_grinder_1,agitator_1,suction_1,suction_2,pump_1,pump_2,mixer_1,mixer_2,mixer_3,
-                        high_shear_mixer_1,conveyer_1,compressor_1,tank_1,packing_machine_1,air_conditioner_1]
+machines_list = [crusher_and_grinder_1, agitator_1, suction_1, suction_2, pump_1, pump_2, mixer_1, mixer_2, mixer_3,
+                 high_shear_mixer_1, conveyer_1, compressor_1, tank_1, packing_machine_1, air_conditioner_1]
 
 
 policyHelper = PolicyHelper(constants.POLICY_FILE)
@@ -51,9 +51,9 @@ while 1:
 
     command_1 = input("\n->")
 
-    if command_1 == "exit" :
+    if command_1 == "exit":
         break
-    
+
     if command_1 == '1':
         print("\n-------------------  POLICY RELATED ---------------------")
         print('\n\n')
@@ -64,7 +64,7 @@ while 1:
 
         command_2 = input("\n->")
 
-        if command_2 == '1' :
+        if command_2 == '1':
             print("\n-------------------  ADD POLICY ---------------------")
             a1 = input("\n-> Enter the machine for new policy :")
             b1 = input("\n-> Enter the New State of the machine :")
@@ -85,27 +85,28 @@ while 1:
             h1 = input('\n-> Enter post condition Machine state :')
             i1 = input('\n-> Enter post condition machine activity :')
 
-            PolicyHelper.add_policy(policyHelper,a1, b1, c1, [d1, e1, f1], [j1,k1,l1], [g1, h1, i1])
+            PolicyHelper.add_policy(policyHelper, a1, b1, c1, [
+                                    d1, e1, f1], [j1, k1, l1], [g1, h1, i1])
             print('\n---------------------------------------------------------')
             pass
-        elif command_2 =='2':
+        elif command_2 == '2':
             print("\n-------------------  DELETE POLICY ---------------------")
-            
+
             policy_no = input("\n-> Enter policy number you want to delete :")
-            PolicyHelper.delete_policy(policyHelper,policy_no)
+            PolicyHelper.delete_policy(policyHelper, policy_no)
             print('\n---------------------------------------------------------')
             pass
-        elif command_2 =='3':
+        elif command_2 == '3':
             print("\n-------------------  SHOW POLICY ---------------------")
             PolicyHelper.show_policies(policyHelper)
             print('\n---------------------------------------------------------')
             pass
-        else :
+        else:
             print('INVALID COMMAND')
             print('Enter "help" to see all commands')
 
-        #time.sleep(5)
-    elif command_1 =='2' :
+        # time.sleep(5)
+    elif command_1 == '2':
         print("\n-------------------  ACTIVITY RELATED ---------------------")
         print('\n\n ')
 
@@ -115,23 +116,23 @@ while 1:
 
         command_2 = input("\n->")
 
-        if command_2 == '1' :
-            
+        if command_2 == '1':
+
             print("\n-------------------  LIST OF MACHINES ---------------------")
             for machine_iterator in machines_list:
-                print( "\n" + machine_iterator.name)
+                print("\n" + machine_iterator.name)
             print('\n---------------------------------------------------------')
-            pass 
+            pass
 
-        elif command_2 =='2':
+        elif command_2 == '2':
             print("\n-------------------  STATE OF MACHINES ---------------------")
             for machine_iterator in machines_list:
 
                 machine_iterator.show_state()
             print('\n---------------------------------------------------------')
-            pass 
             pass
-        elif command_2 =='3':
+            pass
+        elif command_2 == '3':
             print("\n-------------------  CHANGE MACHINE STATE ---------------------")
             machine_name = input("\n->Enter machine name:")
             val = input("\n->Enter new state (ON/OFF) :")
@@ -142,37 +143,32 @@ while 1:
                     machine_exist = True
                     old_state = "OFF"
                     new_state = "ON"
-                    if(val == 'ON'):
+                    if (val == 'ON'):
                         new_state = "ON"
                         old_state = "OFF"
-                    if(itr.state_name == new_state):
-                        print('\n->'+machine_name + ' is already in '+ val + ' state')
-                    
+                    if (itr.state_name == new_state):
+                        print('\n->'+machine_name +
+                              ' is already in ' + val + ' state')
+
                     else:
-                        machines_list = policyHelper.check_policy(machine_name,old_state,new_state,machines_list)
+                        machines_list = policyHelper.check_policy(
+                            machine_name, old_state, new_state, machines_list)
             if machine_exist == False:
                 print('\n Enter Correct Machine Name')
-            
-
-            
-
 
             pass
-        else :
+        else:
             print('INVALID COMMAND')
             print('Enter "help" to see all commands')
-        #time.sleep(5)
-    
-    else :
+        # time.sleep(5)
+
+    else:
         print('INVALID COMMAND')
         print('Enter "help" to see all commands')
-        #time.sleep(5)
+        # time.sleep(5)
 
     print("\n --------------------------next iteration----------------------------")
     #policyHelper = PolicyHelper(constants.POLICY_FILE)
     time.sleep(5)
 
     os.system('cls')
-    
-
-

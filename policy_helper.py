@@ -42,7 +42,7 @@ class PolicyHelper:
 
     def delete_policy(self, policy_number):
 
-        #TODO check policy exist before deleting
+        # TODO check policy exist before deleting
         print(f"Deleting policy number: {policy_number}...")
         new_policy_list = []
         counter = 1
@@ -54,10 +54,10 @@ class PolicyHelper:
         self.policy_list = new_policy_list
         self.update_policies_file()
 
-    def check_policy(self, machine, old_state,new_state, machines_list):
+    def check_policy(self, machine, old_state, new_state, machines_list):
 
         for i in self.policy_list:
-            if (i.object_name == machine and i.state_name == new_state ):
+            if (i.object_name == machine and i.state_name == new_state):
                 pre_condition = i.pre_condition
                 current_condition = i.current_condition
                 post_condition = i.post_condition
@@ -66,12 +66,11 @@ class PolicyHelper:
                 curr = False
                 post = False
 
-
-                if pre_condition[0]=='-':
+                if pre_condition[0] == '-':
                     pre = True
-                if current_condition[0]=='-':
+                if current_condition[0] == '-':
                     curr = True
-                if post_condition[0]=='-':
+                if post_condition[0] == '-':
                     post = True
 
                 # if(pre) :
@@ -80,24 +79,25 @@ class PolicyHelper:
                 #     print('curr true')
                 # if(post):
                 #     print('post true')
-                
-                for j in machines_list :
+
+                for j in machines_list:
                     if (j.name == pre_condition[0] and j.state_name == pre_condition[1]):
                         pre = True
                     if (j.name == current_condition[0] and j.state_name == current_condition[1]):
                         curr = True
                     if (j.name == post_condition[0] and j.state_name == post_condition[1]):
                         post = True
-                if( pre == True and curr == True and post == True):
-                    
+                if (pre == True and curr == True and post == True):
+
                     for k in machines_list:
-                        if (k.name ==machine and k.state_name ==old_state):
+                        if (k.name == machine and k.state_name == old_state):
                             k.change_state(new_state)
-                            print('\n->MACHINE STATE CHANGED to ' + new_state + '\n')
+                            print('\n->MACHINE STATE CHANGED to ' +
+                                  new_state + '\n')
 
                             return machines_list
 
-                else :
+                else:
                     print("\n POLICY DOESN'T ALLOW THIS CHANGE")
                     return machines_list
         pass
@@ -117,15 +117,13 @@ class PolicyHelper:
             post_condition = "()"
             object_info = f"({i.object_name}, {i.state_name}, {i.activity_name}),"
 
-            if len(i.pre_condition)>0:
-                pre_condition = f"({i.pre_condition[0]}, {i.pre_condition[1]}, {i.pre_condition[2]}),"              
-            if len(i.current_condition)>0:
+            if len(i.pre_condition) > 0:
+                pre_condition = f"({i.pre_condition[0]}, {i.pre_condition[1]}, {i.pre_condition[2]}),"
+            if len(i.current_condition) > 0:
                 current_condition = f"({i.current_condition[0]}, {i.current_condition[1]}, {i.current_condition[2]}),"
-            if len(i.post_condition)>0:
-                post_condition=f"({i.post_condition[0]}, {i.post_condition[1]}, {i.post_condition[2]})"
+            if len(i.post_condition) > 0:
+                post_condition = f"({i.post_condition[0]}, {i.post_condition[1]}, {i.post_condition[2]})"
 
             policy_string = f"{i.policy_number}) < {object_info} {pre_condition} {current_condition} {post_condition} > \n"
             f.write(policy_string)
         f.close()
-
-
