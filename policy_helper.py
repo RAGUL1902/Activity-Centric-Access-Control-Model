@@ -106,6 +106,7 @@ class PolicyHelper:
         """Displays all the policies"""
         print("\n============================= POLICIES ============================")
         f = open(self.policy_file)
+        print(f.read())
         return f.read()
 
     def update_policies_file(self):
