@@ -13,7 +13,7 @@
 13) < (crusher_and_grinder_1, OFF, break_down), (-, -, -), (-, -, -), (-, -, -) > 
 14) < (agitator_1, OFF, agitate), (-, -, -), (-, -, -), (-, -, -) > 
 15) < (mixer_1, OFF, mix), (-, -, -), (-, -, -), (-, -, -) > 
-16) < (mixer_2, OFF, mix), (mixer_1, oFF, mix), (-, -, -), (-, -, -) > 
+16) < (mixer_2, OFF, mix), (mixer_1, OFF, mix), (-, -, -), (-, -, -) > 
 17) < (mixer_3, OFF, mix), (-, -, -), (mixer_2, OFF, mix), (-, -, -) > 
 18) < (conveyer_1, OFF, move), (1, 1, 1), (-, -, -), (-, -, -) > 
 19) < (compressor_1, OFF, compress), (-, -, -), (-, -, ), (-, -, -) > 
