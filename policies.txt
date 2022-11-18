@@ -2,7 +2,7 @@
 2) < (agitator_1, ON, agitate), (crusher_and_grinder_1, ON, break_down), (-, -, -), (-, -, -) > 
 3) < (mixer_1, ON, mix), (agitator_1, ON, agitate), (-, -, -), (conveyer_1, OFF, move) > 
 4) < (mixer_2, ON, mix), (agitator_1, ON, agitate), (mixer_1, ON, mix), (conveyer_1, OFF, move) > 
-5) < (mixer_3, ON, mix), (agitator_1, ON, agitate), (mixer_2, ON, mix), (conveyer_2, OFF, move) > 
+5) < (mixer_3, ON, mix), (agitator_1, ON, agitate), (mixer_1, ON, mix), (conveyer_1, OFF, move) > 
 6) < (conveyer_1, ON, move), (mixer_3, OFF, mix), (-, -, -), (-, -, -) > 
 7) < (compressor_1, ON, compress), (conveyer_1, ON, move), (-, -, -), (-, -, -) > 
 8) < (conveyer_2, ON, move), (compressor_1, ON, compress), (-, -, -), (-, -, -) > 
