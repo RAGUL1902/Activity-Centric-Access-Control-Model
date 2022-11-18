@@ -15,9 +15,9 @@ os.system('cls')
 POLICY_FILE = 'policies.txt'
 
 
-
 master = Tk()
 master.title("Activity Centric Access Control Model")
+
 
 def show_state():
     for index, machine_iterator in enumerate(constants.machines_list):
@@ -171,6 +171,7 @@ def take_input(machines_list=machines_list):
         time.sleep(5)
 
         os.system('cls')
+
 
 """
 Starting a new thread to take user inputs. Tkinter runs in the Main thread.
