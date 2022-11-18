@@ -20,7 +20,7 @@ class Machine:
 
     def show_state(self):
 
-        print('\n' + self.name + ' is ' + self.state_name)
+        print(self.name + ' is ' + self.state_name)
 
     def describe(self):
         return "{self.name} does {self.activity}"
