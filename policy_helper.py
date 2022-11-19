@@ -94,13 +94,11 @@ class PolicyHelper:
                             k.change_state(new_state)
                             print('\n->MACHINE STATE CHANGED to ' +
                                   new_state + '\n')
-
-                            return machines_list
+                            return 1
 
                 else:
                     print("\n POLICY DOESN'T ALLOW THIS CHANGE")
-                    return machines_list
-        pass
+                    return 0
 
     def show_policies(self):
         """Displays all the policies"""

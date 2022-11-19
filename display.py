@@ -3,7 +3,7 @@ import tkinter.messagebox
 import customtkinter
 import constants
 import policy_helper
-
+import inspect
 customtkinter.set_appearance_mode("dark")
 customtkinter.set_default_color_theme("blue")
 
@@ -13,7 +13,6 @@ class App(customtkinter.CTk):
     HEIGHT = 520
 
     policyHelper = policy_helper.PolicyHelper(constants.POLICY_FILE)
-
 
     def __init__(self):
         super().__init__()
@@ -49,29 +48,68 @@ class App(customtkinter.CTk):
                                               text_font=("Roboto Medium", -20))  # font name and size in px
         self.label_1.grid(row=1, column=0, pady=10, padx=10)
 
-        self.button_1 = customtkinter.CTkButton(master=self.frame_left,
-                                                text="CTkButton",
-                                                command=self.button_event)
-        self.button_1.grid(row=2, column=0, pady=10, padx=20)
+        policyHelper = policy_helper.PolicyHelper(constants.POLICY_FILE)
 
-        self.button_2 = customtkinter.CTkButton(master=self.frame_left,
-                                                text="CTkButton",
-                                                command=self.button_event)
-        self.button_2.grid(row=3, column=0, pady=10, padx=20)
 
-        self.button_3 = customtkinter.CTkButton(master=self.frame_left,
-                                                text="CTkButton",
-                                                command=self.button_event)
-        self.button_3.grid(row=4, column=0, pady=10, padx=20)
+        def check_policy(machine_index):
+            machine_name1 = constants.machines_list[int(machine_index)].name
+            state = globals()["switch_"+str(machine_name1)].get().upper()
+            old_state = "OFF"
+            if state =="OFF":
+               old_state = "ON"
+            allow_toggle = policyHelper.check_policy(machine_name1, old_state,state,constants.machines_list)
+            #machine_name = 'mixer_1'
+            if allow_toggle and old_state=="OFF":
+                self..select()
+            elif allow_toggle and old_state=="ON":
+                self.machine_name1.deselect()
+            elif not allow_toggle and old_state=="OFF":
+                self.machine_name1.deselect()
+            elif not allow_toggle and old_state=="ON":
+                self.machine_name1.select()
+        
+        def switch_state_0():
+            check_policy(0)       
+        def switch_state_1():
+            allow_toggle = check_policy(1) 
+        def switch_state_2():
+            allow_toggle = check_policy(2)
+        def switch_state_3():
+            allow_toggle = check_policy(3)
+        def switch_state_4():
+            allow_toggle = check_policy(4)
+        def switch_state_5():
+            allow_toggle = check_policy(5)
+        def switch_state_6():
+            allow_toggle = check_policy(6)
+        def switch_state_7():
+            allow_toggle = check_policy(7)
+        def switch_state_8():
+            allow_toggle = check_policy(8)
+        def switch_state_9():
+            allow_toggle = check_policy(9)
+        def switch_state_10():
+            allow_toggle = check_policy(10)
+        def switch_state_11():
+            allow_toggle = check_policy(11)
+        def switch_state_12():
+            allow_toggle = check_policy(12)
+        def switch_state_13():
+            allow_toggle = check_policy(13)
+        def switch_state_14():
+            allow_toggle = check_policy(14)
 
-        self.label_mode = customtkinter.CTkLabel(master=self.frame_left, text="Appearance Mode:")
-        self.label_mode.grid(row=9, column=0, pady=0, padx=20, sticky="w")
-
-        self.optionmenu_1 = customtkinter.CTkOptionMenu(master=self.frame_left,
-                                                        values=["Light", "Dark", "System"],
-                                                        command=self.change_appearance_mode)
-        self.optionmenu_1.grid(row=10, column=0, pady=10, padx=20, sticky="w")
-
+        switch_functions = [switch_state_0,switch_state_1, switch_state_2,switch_state_3,switch_state_4,
+                            switch_state_5,switch_state_6,switch_state_7,switch_state_8,switch_state_9,switch_state_10,switch_state_11,
+                            switch_state_12,switch_state_13,switch_state_14]
+        
+        for index, machine in enumerate(constants.machines_list):
+            machine_name = machine.name
+            globals()["switch_"+str(machine_name)]= customtkinter.StringVar(value=machine.state_name.lower())
+            self.machine_name = customtkinter.CTkSwitch(master=self.frame_left, text=machine.name,command=switch_functions[index],
+                                                  variable = globals()["switch_"+str(machine_name)], onvalue="on", offvalue="off")
+            self.machine_name.grid(row=index+2, column=0, pady=10, padx=20,sticky="we")
+       
         # ============ frame_right ============
 
         # configure grid layout (3x7)
@@ -135,13 +173,7 @@ class App(customtkinter.CTk):
                                                 command=self.progressbar.set)
         self.slider_2.grid(row=5, column=0, columnspan=2, pady=10, padx=20, sticky="we")
 
-        self.switch_1 = customtkinter.CTkSwitch(master=self.frame_right,
-                                                text="CTkSwitch")
-        self.switch_1.grid(row=4, column=2, columnspan=1, pady=10, padx=20, sticky="we")
-
-        self.switch_2 = customtkinter.CTkSwitch(master=self.frame_right,
-                                                text="CTkSwitch")
-        self.switch_2.grid(row=5, column=2, columnspan=1, pady=10, padx=20, sticky="we")
+        
 
         self.combobox_1 = customtkinter.CTkComboBox(master=self.frame_right,
                                                     values=["Value 1", "Value 2"])
@@ -168,14 +200,14 @@ class App(customtkinter.CTk):
         self.button_5.grid(row=8, column=2, columnspan=1, pady=20, padx=20, sticky="we")
 
         # set default values
-        self.optionmenu_1.set("Dark")
-        self.button_3.configure(state="disabled", text="Disabled CTkButton")
+        # self.optionmenu_1.set("Dark")
+        # self.button_3.configure(state="disabled", text="Disabled CTkButton")
         self.combobox_1.set("CTkCombobox")
         self.radio_button_1.select()
         self.slider_1.set(0.2)
         self.slider_2.set(0.7)
         self.progressbar.set(0.5)
-        self.switch_2.select()
+        # self.switch_2.select()
         self.radio_button_3.configure(state=tkinter.DISABLED)
         self.check_box_1.configure(state=tkinter.DISABLED, text="CheckBox disabled")
         self.check_box_2.select()
