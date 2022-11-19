@@ -94,9 +94,6 @@ class PolicyHelper:
                             k.change_state(new_state)
                             print('\n->MACHINE STATE CHANGED to ' +
                                   new_state + '\n')
-
-                            return constants.machines_list
-
                 else:
                     print("\n POLICY DOESN'T ALLOW THIS CHANGE")
 
