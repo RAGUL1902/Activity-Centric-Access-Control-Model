@@ -50,6 +50,7 @@ class App(customtkinter.CTk):
 
         policyHelper = policy_helper.PolicyHelper(constants.POLICY_FILE)
 
+        switches = {}
 
         def check_policy(machine_index):
             machine_name1 = constants.machines_list[int(machine_index)].name
@@ -57,16 +58,16 @@ class App(customtkinter.CTk):
             old_state = "OFF"
             if state =="OFF":
                old_state = "ON"
-            allow_toggle = policyHelper.check_policy(machine_name1, old_state,state,constants.machines_list)
+            allow_toggle = policyHelper.check_policy(machine_name1, old_state,state)
             #machine_name = 'mixer_1'
             if allow_toggle and old_state=="OFF":
-                self..select()
+                switches[machine_name1].select()
             elif allow_toggle and old_state=="ON":
-                self.machine_name1.deselect()
+                switches[machine_name1].deselect()
             elif not allow_toggle and old_state=="OFF":
-                self.machine_name1.deselect()
+                switches[machine_name1].deselect()
             elif not allow_toggle and old_state=="ON":
-                self.machine_name1.select()
+                switches[machine_name1].select()
         
         def switch_state_0():
             check_policy(0)       
@@ -106,10 +107,12 @@ class App(customtkinter.CTk):
         for index, machine in enumerate(constants.machines_list):
             machine_name = machine.name
             globals()["switch_"+str(machine_name)]= customtkinter.StringVar(value=machine.state_name.lower())
-            self.machine_name = customtkinter.CTkSwitch(master=self.frame_left, text=machine.name,command=switch_functions[index],
+            switch = customtkinter.CTkSwitch(master=self.frame_left, text=machine.name,command=switch_functions[index],
                                                   variable = globals()["switch_"+str(machine_name)], onvalue="on", offvalue="off")
-            self.machine_name.grid(row=index+2, column=0, pady=10, padx=20,sticky="we")
-       
+            switch.grid(row=index+2, column=0, pady=10, padx=20,sticky="we")
+
+            switches[machine_name] = switch
+            
         # ============ frame_right ============
 
         # configure grid layout (3x7)
@@ -127,7 +130,7 @@ class App(customtkinter.CTk):
         self.frame_info.rowconfigure(0, weight=1)
         self.frame_info.columnconfigure(0, weight=1)
 
-        policies = self.policyHelper.show_policies()
+        policies = self.policyHelper.get_policies()
         self.label_info_1 = customtkinter.CTkLabel(master=self.frame_info,
                                                    text=policies,
                                                    height=100,
