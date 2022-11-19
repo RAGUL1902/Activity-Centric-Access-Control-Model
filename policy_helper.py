@@ -1,4 +1,5 @@
 import policy
+import constants
 
 # TODO: Add validation for policy formats
 # TODO: read policy file and load polices into list
@@ -54,8 +55,7 @@ class PolicyHelper:
         self.policy_list = new_policy_list
         self.update_policies_file()
 
-    def check_policy(self, machine, old_state, new_state, machines_list):
-
+    def check_policy(self, machine, old_state, new_state):
         for i in self.policy_list:
             if (i.object_name == machine and i.state_name == new_state):
                 pre_condition = i.pre_condition
@@ -80,7 +80,7 @@ class PolicyHelper:
                 # if(post):
                 #     print('post true')
 
-                for j in machines_list:
+                for j in constants.machines_list:
                     if (j.name == pre_condition[0] and j.state_name == pre_condition[1]):
                         pre = True
                     if (j.name == current_condition[0] and j.state_name == current_condition[1]):
@@ -89,25 +89,25 @@ class PolicyHelper:
                         post = True
                 if (pre == True and curr == True and post == True):
 
-                    for k in machines_list:
+                    for k in constants.machines_list:
                         if (k.name == machine and k.state_name == old_state):
                             k.change_state(new_state)
                             print('\n->MACHINE STATE CHANGED to ' +
                                   new_state + '\n')
 
-                            return machines_list
+                            return constants.machines_list
 
                 else:
                     print("\n POLICY DOESN'T ALLOW THIS CHANGE")
-                    return machines_list
-        pass
+                    return constants.machines_list
 
     def show_policies(self):
         """Displays all the policies"""
         print("\n============================= POLICIES ============================")
         f = open(self.policy_file)
-        print(f.read())
-        return f.read()
+        policies = f.read()
+        print(policies)
+        return policies
 
     def update_policies_file(self):
         open(self.policy_file, 'w').close()
