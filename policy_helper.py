@@ -72,14 +72,6 @@ class PolicyHelper:
                     curr = True
                 if post_condition[0] == '-':
                     post = True
-
-                # if(pre) :
-                #     print('pre true')
-                # if(curr):
-                #     print('curr true')
-                # if(post):
-                #     print('post true')
-
                 for j in constants.machines_list:
                     if (j.name == pre_condition[0] and j.state_name == pre_condition[1]):
                         pre = True
