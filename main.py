@@ -29,9 +29,6 @@ class App(customtkinter.CTk):
         for policy in self.policyHelper.policy_list:
             policies += f"{policy.get_policy_string()}\n"
 
-        print("Policy list size from TkinterApp(): ", len(self.policyHelper.policy_list))
-        
-
         self.label_info_1 = customtkinter.CTkLabel(master=self.frame_info,
                                                    text=policies,
                                                    height=500,
