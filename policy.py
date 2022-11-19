@@ -27,6 +27,5 @@ class Policy:
         self.current_condition = current_condition
         self.post_condition = post_condition
 
-    def print_policy(self):
-        print(
-            f"{self.policy_number}) <({self.object_name}, {self.source_name}, {self.activity_name}), ({self.pre_condition[0]}, {self.pre_condition[1]}, {self.pre_condition[2]}), ({self.current_condition[0]}, {self.current_condition[1]}, {self.current_condition[2]}), ({self.post_condition[0]}, {self.post_condition[1]}, {self.post_condition[2]})>")
+    def get_policy_string(self):
+        return (f"{self.policy_number}) <({self.object_name}, {self.state_name}, {self.activity_name}), ({self.pre_condition[0]}, {self.pre_condition[1]}, {self.pre_condition[2]}), ({self.current_condition[0]}, {self.current_condition[1]}, {self.current_condition[2]}), ({self.post_condition[0]}, {self.post_condition[1]}, {self.post_condition[2]})>")
