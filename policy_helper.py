@@ -99,14 +99,12 @@ class PolicyHelper:
 
                 else:
                     print("\n POLICY DOESN'T ALLOW THIS CHANGE")
-                    return constants.machines_list
 
-    def show_policies(self):
+    def get_policies(self):
         """Displays all the policies"""
         print("\n============================= POLICIES ============================")
         f = open(self.policy_file)
         policies = f.read()
-        print(policies)
         return policies
 
     def update_policies_file(self):
