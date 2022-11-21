@@ -84,12 +84,12 @@ class PolicyHelper:
                     for k in constants.machines_list:
                         if (k.name == machine and k.state_name == old_state):
                             k.change_state(new_state)
-                            print('\n->MACHINE STATE CHANGED to ' +
-                                  new_state + '\n')
+                            # print('\n->MACHINE STATE CHANGED to ' +
+                            #       new_state + '\n')
                             return 1
 
                 else:
-                    print("\n POLICY DOESN'T ALLOW THIS CHANGE")
+                    # print("\n POLICY DOESN'T ALLOW THIS CHANGE")
                     return 0
 
     def get_policies(self):
