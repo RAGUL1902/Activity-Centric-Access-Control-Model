@@ -61,10 +61,12 @@ class App(customtkinter.CTk):
                 tex.delete("0.0",tkinter.END)
             elif not allow_toggle and old_state=="OFF":
                 switches[machine_name1].deselect()
-                tex.insert("0.0","Change made violates the policy defined, the state will remain as it is.")
+                tex.delete("0.0",tkinter.END)
+                tex.insert("0.0","Change made is not compatible with the policies defined. Please check the policies.")
             elif not allow_toggle and old_state=="ON":
                 switches[machine_name1].select()
-                tex.insert("0.0","Change made violates the policy defined, the state will remain as it is.")
+                tex.delete("0.0",tkinter.END)
+                tex.insert("0.0","Change made is not compatible with the policies defined. Please check the policies.")
 
         
         def switch_state_0():
